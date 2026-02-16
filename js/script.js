@@ -9,12 +9,16 @@ console.log(formControlEl);
 
 let randomNumbers = []
 
-for (let i = 0; i < 5; i++) {
-    const liEl = document.createElement('li')
-    numbersListEl.appendChild(liEl)
-    liEl.innerText = Math.floor(Math.random() * 20 + 1)
-    randomNumbers.push(liEl.innerText)
+while (randomNumbers.length < 5) {
+    const randomNumbersCreate = Math.floor(Math.random() * 20 + 1)
+    if (!randomNumbers.includes(randomNumbersCreate)) {
+        const liEl = document.createElement('li')
+        numbersListEl.appendChild(liEl)
+        liEl.innerText = randomNumbersCreate
+        randomNumbers.push(randomNumbersCreate)
+    }
 }
+
 //console.log(randomNumbers);
 answersFormEl.addEventListener('submit', function(e){
     e.preventDefault()
@@ -24,7 +28,7 @@ answersFormEl.addEventListener('submit', function(e){
     for (let i = 0; i < formControlEl.length; i++) {
         const element = formControlEl[i];
         //console.log(element.value);
-       if (Number(element.value) == randomNumbers[0] || Number(element.value) == randomNumbers[1] || Number(element.value) == randomNumbers[2] || Number(element.value) == randomNumbers[3] || Number(element.value) == randomNumbers[4]) {
+       if (randomNumbers.includes(Number(element.value))) {
             console.log('funziona');
             confirmNumber++
             numberRight.push(element.value)
