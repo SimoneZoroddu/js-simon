@@ -19,18 +19,20 @@ for (let i = 0; i < 5; i++) {
 answersFormEl.addEventListener('submit', function(e){
     e.preventDefault()
     //console.log(formControlEl.length);
+    let confirmNumber = 0
+    let numberRight = []
     for (let i = 0; i < formControlEl.length; i++) {
         const element = formControlEl[i];
-        console.log(element.value);
-
-        let confirmNumber = 0
+        //console.log(element.value);
        if (Number(element.value) == randomNumbers[0] || Number(element.value) == randomNumbers[1] || Number(element.value) == randomNumbers[2] || Number(element.value) == randomNumbers[3] || Number(element.value) == randomNumbers[4]) {
             console.log('funziona');
-            confirmNumber
+            confirmNumber++
+            numberRight.push(element.value)
         }
-        console.log(confirmNumber);
-        
     }
+    //console.log(confirmNumber);
+    console.log(numberRight);
+    messageEl.innerText = `Complimenti hai azzeccato ${confirmNumber} numeri: ${numberRight}`
 })
 
 
