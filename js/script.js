@@ -1,15 +1,38 @@
 const numbersListEl = document.getElementById('numbers-list')
 const countDownEl = document.getElementById('countdown')
 const answersFormEl = document.getElementById('answers-form')
+const messageEl = document.getElementById('message')
 //console.log(numbersListEl);
+// proviamo a prendere tutti gli elementi form-control 
+const formControlEl = document.getElementsByClassName('form-control') 
+console.log(formControlEl);
 
-
+let randomNumbers = []
 
 for (let i = 0; i < 5; i++) {
     const liEl = document.createElement('li')
     numbersListEl.appendChild(liEl)
     liEl.innerText = Math.floor(Math.random() * 20 + 1)
+    randomNumbers.push(liEl.innerText)
 }
+//console.log(randomNumbers);
+answersFormEl.addEventListener('submit', function(e){
+    e.preventDefault()
+    //console.log(formControlEl.length);
+    for (let i = 0; i < formControlEl.length; i++) {
+        const element = formControlEl[i];
+        console.log(element.value);
+
+        let confirmNumber = 0
+       if (Number(element.value) == randomNumbers[0] || Number(element.value) == randomNumbers[1] || Number(element.value) == randomNumbers[2] || Number(element.value) == randomNumbers[3] || Number(element.value) == randomNumbers[4]) {
+            console.log('funziona');
+            confirmNumber
+        }
+        console.log(confirmNumber);
+        
+    }
+})
+
 
 let count = 30
 const countDown = setInterval(function () {
@@ -21,4 +44,5 @@ const countDown = setInterval(function () {
     } else {
         countDownEl.innerText = count--
     }
-}, 200) // e da settare a 1000 cosi si vede per ogni secondo
+}, 100) // e da settare a 1000 cosi si vede per ogni secondo
+
