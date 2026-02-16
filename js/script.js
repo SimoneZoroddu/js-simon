@@ -4,7 +4,7 @@ const answersFormEl = document.getElementById('answers-form')
 const messageEl = document.getElementById('message')
 //console.log(numbersListEl);
 // proviamo a prendere tutti gli elementi form-control 
-const formControlEl = document.getElementsByClassName('form-control') 
+const formControlEl = document.getElementsByClassName('form-control')
 console.log(formControlEl);
 
 let randomNumbers = []
@@ -20,25 +20,35 @@ while (randomNumbers.length < 5) {
 }
 
 //console.log(randomNumbers);
-answersFormEl.addEventListener('submit', function(e){
+answersFormEl.addEventListener('submit', function (e) {
     e.preventDefault()
     //console.log(formControlEl.length);
     let confirmNumber = 0
     let numberRight = []
+    let checkNumbers = []
     for (let i = 0; i < formControlEl.length; i++) {
         const element = formControlEl[i];
         //console.log(element.value);
-       if (randomNumbers.includes(Number(element.value))) {
-            console.log('funziona');
-            confirmNumber++
-            numberRight.push(element.value)
+        const elementNumbValue = Number(element.value)
+        if (checkNumbers.includes(elementNumbValue)) {
+            alert('Non si accettano numeri uguali')
+            location.reload()
         }
+
+        checkNumbers.push(elementNumbValue)
+
+        if (randomNumbers.includes(elementNumbValue)) {
+            //console.log('funziona');
+            confirmNumber++
+            numberRight.push(elementNumbValue)
+        }
+       
     }
+    console.log(checkNumbers);
     //console.log(confirmNumber);
-    console.log(numberRight);
+    //console.log(numberRight);
     messageEl.innerText = `Complimenti hai azzeccato ${confirmNumber} numeri: ${numberRight}`
 })
-
 
 let count = 30
 const countDown = setInterval(function () {
